@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-white text-brand-textMain font-sans antialiased selection:bg-brand-primary/20 selection:text-brand-dark;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-brand-dark font-bold tracking-tight;
+  }
+}
+
+@layer utilities {
+  /* iPhone Liquid Glass Base Classes */
+  .glass-card {
+    @apply bg-white/75 backdrop-blur-xl border border-white/60 shadow-glass rounded-3xl transition-all duration-300;
+  }
+  .glass-card-hover {
+    @apply hover:bg-white/90 hover:border-brand-primary/30 hover:shadow-glass-lg hover:-translate-y-1;
+  }
+  .glass-pill {
+    @apply bg-white/80 backdrop-blur-lg border border-brand-border/60 shadow-glass-sm rounded-full;
+  }
+  .glass-navbar {
+    @apply bg-white/70 backdrop-blur-2xl border-b border-brand-border/40 shadow-sm;
+  }
+  .glass-dark {
+    @apply bg-brand-dark/90 backdrop-blur-2xl border border-white/10 shadow-glass-lg text-white;
+  }
+  .glass-green {
+    @apply bg-brand-primary/10 backdrop-blur-xl border border-brand-primary/20 text-brand-dark;
+  }
+  .glass-input {
+    @apply bg-white/80 backdrop-blur-md border border-brand-border/80 rounded-2xl px-4 py-3 text-brand-dark placeholder-brand-textSub/60 focus:outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition-all duration-200;
+  }
+  .glass-button-primary {
+    @apply bg-brand-primary hover:bg-brand-primaryHover text-white font-semibold rounded-full px-6 py-3 shadow-md hover:shadow-glass-lg active:scale-95 transition-all duration-200 flex items-center justify-center gap-2;
+  }
+  .glass-button-outline {
+    @apply bg-white/60 hover:bg-white backdrop-blur-md border border-brand-border hover:border-brand-primary text-brand-dark font-semibold rounded-full px-6 py-3 hover:shadow-glass active:scale-95 transition-all duration-200 flex items-center justify-center gap-2;
+  }
+
+  /* Glow Effects */
+  .green-glow {
+    box-shadow: 0 0 35px -5px rgba(23, 107, 69, 0.25);
+  }
+  .green-glow-lg {
+    box-shadow: 0 0 60px 5px rgba(23, 107, 69, 0.35);
+  }
+
+  /* Utility Scrollbars */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
