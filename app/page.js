@@ -22,7 +22,9 @@ import {
   Lock,
   Headphones,
   CheckCircle2,
-  PackageCheck
+  PackageCheck,
+  ShoppingBag,
+  Flame
 } from 'lucide-react';
 
 const processSteps = [
@@ -174,8 +176,8 @@ export default function Home() {
   return (
     <div className="bg-white overflow-hidden text-brand-dark">
 
-      {/* 1. HERO BANNER */}
-      <section className="relative h-[440px] sm:h-[480px] lg:h-[500px] w-full flex items-center justify-center px-6 lg:px-12 overflow-hidden bg-brand-dark">
+      {/* 1. HERO BANNER (100vh Full Screen Height & Centered Elements on Mobile, Left-Aligned on Desktop, Buttons Forced in One Row) */}
+      <section className="relative h-screen w-full flex items-center justify-center px-6 lg:px-12 overflow-hidden bg-brand-dark">
         {!videoError ? (
           <video
             autoPlay
@@ -184,7 +186,7 @@ export default function Home() {
             playsInline
             poster="/hero.png"
             onError={() => setVideoError(true)}
-            className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+            className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none filter brightness-90"
           >
             <source src="/heroPlay.mp4" type="video/mp4" />
           </video>
@@ -194,33 +196,69 @@ export default function Home() {
             style={{ backgroundImage: 'url(/hero.png)' }} 
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/30 z-10 pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto w-full relative z-20 flex flex-col items-start text-left">
-          <p className="text-emerald-400 text-xs font-bold tracking-[0.2em] uppercase mb-3">
-            PURE. AUTHENTIC. EXCEPTIONAL.
-          </p>
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold text-white leading-[1.15] tracking-tight max-w-2xl mb-4">
-            Bringing You the <br />
-            Finest <span className="text-emerald-400">Indian Spices</span>
-          </h1>
-          <p className="text-xs sm:text-sm lg:text-base text-brand-light/90 font-normal max-w-xl mb-8 leading-relaxed">
-            Carefully sourced from the best farms in India and packed to retain aroma, flavor, and purity.
-          </p>
-          <div className="flex flex-wrap items-center gap-4">
-            <Link
-              href="/products"
-              className="px-7 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold rounded-full shadow-lg transition-all duration-300"
-            >
-              Shop Now
-            </Link>
-            <Link
-              href="/categories"
-              className="px-7 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs sm:text-sm font-bold rounded-full shadow-lg transition-all duration-300"
-            >
-              Explore Categories
-            </Link>
+        <div className="max-w-7xl mx-auto w-full relative z-20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center justify-center pt-16">
+          
+          {/* Left/Center Text Content: Centered on mobile, Left-aligned on large screens */}
+          <div className="lg:col-span-7 flex flex-col items-center justify-center text-center lg:items-start lg:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/30 backdrop-blur-md mb-4">
+              <Sparkles size={14} className="text-emerald-400 animate-pulse" />
+              <span className="text-emerald-400 text-xs font-bold tracking-[0.15em] uppercase">
+                PURE. AUTHENTIC. EXCEPTIONAL.
+              </span>
+            </div>
+
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold text-white leading-[1.15] tracking-tight max-w-2xl mb-4">
+              Bringing You the <br className="hidden sm:inline" />
+              Finest <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">Indian Spices</span>
+            </h1>
+
+            <p className="text-xs sm:text-sm lg:text-base text-brand-light/90 font-normal max-w-xl mb-8 leading-relaxed">
+              Carefully sourced from the best organic farms across India and cold-ground to absolute perfection to retain rich natural aroma, vibrant color, and pure flavor.
+            </p>
+
+            {/* Buttons in a single row (flex-row) without wrapping */}
+            <div className="flex flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full sm:w-auto">
+              <Link
+                href="/products"
+                className="px-5 sm:px-7 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] sm:text-sm font-bold rounded-full shadow-lg shadow-emerald-900/30 transition-all duration-300 flex items-center gap-2 group shrink-0"
+              >
+                <ShoppingBag size={15} />
+                <span>Shop Now</span>
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/categories"
+                className="px-5 sm:px-7 py-3.5 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white text-[11px] sm:text-sm font-bold rounded-full shadow-lg transition-all duration-300 flex items-center gap-2 shrink-0"
+              >
+                <span>Explore Categories</span>
+              </Link>
+            </div>
           </div>
+
+          {/* Right Floating Product/Image Card Layout Preview */}
+          <div className="lg:col-span-5 hidden lg:flex justify-end relative">
+            <div className="relative w-72 h-80 rounded-3xl overflow-hidden shadow-2xl border border-white/20 backdrop-blur-xl bg-white/10 p-3 group">
+              <img 
+                src="/hero.png" 
+                alt="Featured Spice" 
+                className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute bottom-6 left-6 right-6 bg-black/60 backdrop-blur-md p-4 rounded-xl border border-white/15">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-xs font-bold text-white flex items-center gap-1">
+                    <Flame size={14} className="text-emerald-400" /> Export Grade
+                  </span>
+                  <div className="flex items-center gap-1 text-amber-400 text-xs font-bold">
+                    <Star size={12} fill="#F59E0B" /> 4.9
+                  </div>
+                </div>
+                <p className="text-[11px] text-brand-light/80">100% Organic & Farm Fresh Selection</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
